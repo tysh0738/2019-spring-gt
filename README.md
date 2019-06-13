@@ -4,9 +4,11 @@ Project template of course - Graph Theory (EE6622E) in National Cheng Kung Unive
 ## 學號: E24044046
 
 ## 解題邏輯
+### 目標:
 此程式為解決無向圖之中國郵差問題。(此圖為simple graph，且權重皆相同)
-測資的部分，因使用topo讀檔產生的為有向圖，因此測資使用雙向edge表示無向圖，並且每條edges的capacity和flow value皆設為1。
--流程:
+### 測資:
+因使用topo讀檔產生的為有向圖，因此測資使用雙向edge表示無向圖，並且每條edges的capacity和flow value皆設為1。
+### 流程:
 1. 產生無向圖
 2. 計算各點的degree，並找出odd degree的點
 3. 對全部odd degree的點做maximum matching
@@ -23,27 +25,28 @@ Project template of course - Graph Theory (EE6622E) in National Cheng Kung Unive
 
 ## 執行結果
 ### 1. topo1.txt: 4 odd degree's vertices
--graph:
+#### -graph:
 
 ![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph1.PNG)
 
--result:
+#### -result:
 
 ![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo1.PNG)
 
 ### 2. topo2.txt: 0 odd degree's vertices
--graph:
+#### -graph:
 
 ![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph2.PNG)
 
--result:
+#### -result:
 
 ![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo2.PNG)
 
 ### 3. topo3.txt: 2 odd degree's vertices
--graph:
+#### -graph:
 
 ![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph3.PNG)
 
--result:
+#### -result:
+
 ![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo3.PNG)
