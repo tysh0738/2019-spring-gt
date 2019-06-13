@@ -25,31 +25,25 @@ Project template of course - Graph Theory (EE6622E) in National Cheng Kung Unive
 1. topo1.txt: 4 odd degree's vertices
 -graph:
 
-![]
-(https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph1.PNG)
+![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph1.PNG)
 
 -result:
 
-![]
-(https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo1.PNG)
+![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo1.PNG)
 
 2. topo2.txt: 0 odd degree's vertices
 -graph:
 
-![]
-(https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph2.PNG)
+![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph2.PNG)
 
 -result:
 
-![]
-(https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo2.PNG)
+![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo2.PNG)
 
 1. topo3.txt: 2 odd degree's vertices
 -graph:
 
-![]
-(https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph3.PNG)
+![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph3.PNG)
 
 -result:
-![]
-(https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo3.PNG)
+![](https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo3.PNG)
