@@ -1,82 +1,55 @@
 # Graph-Theory-Project-Template
 Project template of course - Graph Theory (EE6622E) in National Cheng Kung University.
 
-## How to run
+## 學號: E24044046
 
-### Linux
+## 解題邏輯
+此程式為解決無向圖之中國郵差問題。(此圖為simple graph，且權重皆相同)
+測資的部分，因使用topo讀檔產生的為有向圖，因此測資使用雙向edge表示無向圖，並且每條edges的capacity和flow value皆設為1。
+-流程:
+1. 產生無向圖
+2. 計算各點的degree，並找出odd degree的點
+3. 對全部odd degree的點做maximum matching
+4. 找到Euler circuit，即為所求
 
-```
-# clone first (with submodule)
-$ git clone --recursive https://github.com/<your-name>/Graph-Theory-Project-Template.git
-# (Option) build libfakemn.a
-$ cd fake-mininet && make lib && cd .. && cp fake-mininet/libfakemn.a .
-# build
-$ make 
-# run 
-$ ./main.out
-```
+## 程式碼實作
+1. 使用interpret函式將topo.txt檔建出無向圖
+2. 計算各點的degree存在一維的動態陣列(degree)裡，並記錄degree為奇數的點於另一個vector(odd_vertex)
+3. 若是有degree為奇數的點，則使用助教提供的Path structure找到每一種matching的path，再計算分別最短的path長度，並將path長度和經過的edges記錄在兩個vector中(path_length, path_vertex)。最後比較出全部最短path長度的matching，即為maximum matching。將maximum matching需要經過的eges在原圖加上相對應的edges，亦使用雙向edge，並將原本圖中相對應edges的capacity設為3，作為後面演算法的指標。
+若是degree全為偶數，則跳過這一個步驟。
+-此外，此步驟的maximum matching目前只完成2或4個vertices的matching。
+4. 使用新產生的圖，從第一個vertex開始，檢查是否有與其他vertices connected，若是connected並且capacity=3(代表需要重複走的路)，則下一步就走這條edge；若是capacity!=3，則逐次搜尋每個edges的connected狀況，若是其他edge都沒有與目前的vertex connected，則此條edge就為下一步。其中，走過的edge要雙向disconnect，並且將走過的vertices存在一個vector(circuit)中。執行直到全部edges都走完，並且走回原點。
+輸出:circuit的長度為新產生圖的edge個數除以2，因為edge是創建雙向的(兩條)。並將存在vector(circuit)的edges依序輸出。
 
-### Windows
+## 執行結果
+1. topo1.txt: 4 odd degree's vertices
+-graph:
 
-If your PC is `window 10`, then you need to install the related dependencies. For example, if you are using `VSCode` as your IDE, then you can install the plugin of `C/C++` in your vscode. And then install the following programs/packages:
-* mingw
-* git
+![]
+(https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph1.PNG)
 
-Step by step to create `c_cpp_properties.json` and `tasks.json`:
-* `Ctrl+Shift+P` -> `C/C++: Edit Configuration` -> then you have the first JSON file.
-* `Ctrl+Shift+P` -> `Tasks: Configure Task` -> then you have the second JSON file.
+-result:
 
-Here is the setting of `c_cpp_properties.json` and `tasks.json`:
-```json
-# c_cpp_properties.json (If your mingw installed in another folder, then you have to change the value in `compilterPath`)
-{
-    "configurations": [
-        {
-            "name": "MinGW",
-            "intelliSenseMode": "gcc-x64",
-            "includePath": [
-                "$(workspaceFolder)"
-            ],
-            "compilerPath": "C:/mingw/bin/gcc.exe",
-            "cStandard": "c11",
-            "cppStandard": "c++11"
-        }
-    ],
-    "version": 4
-}
+![]
+(https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo1.PNG)
 
-# tasks.json
-{
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "type": "shell",
-            "command": "g++",
-            "args": [
-                "-g",
-                "main.cc",
-                "-o",
-                "main.exe",
-                "-Ifake-mininet/lib",
-                "-g3",
-                "-L.",
-                "-lfakemn_win",
-                "-std=c++11"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
-    ]
-}
-```
+2. topo2.txt: 0 odd degree's vertices
+-graph:
 
-After all the settings have been done, we can press `Ctrl+Shift+B` to run the task, if your settings is correct, then there will have an executable file which named `main.exe`.
+![]
+(https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph2.PNG)
 
-Or you can just [DOWNLOAD a pre-built VM images](http://gofile.me/39GpL/XU5tznyO6) provided by TA.
+-result:
 
-> [Guide of environment setting](https://hackmd.io/-5WZQC-1QqOeV3KUX65tEw?view) on Windows.
+![]
+(https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo2.PNG)
 
-## TODO - Your descriptions about solutions/algorithms/results
+1. topo3.txt: 2 odd degree's vertices
+-graph:
+
+![]
+(https://github.com/tysh0738/2019-spring-gt/blob/master/img/graph3.PNG)
+
+-result:
+![]
+(https://github.com/tysh0738/2019-spring-gt/blob/master/img/topo3.PNG)
