@@ -4,8 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <unistd.h>
-#include <queue>
-#include <map>
+#include <fstream>
 #include "network_manager.h"
 #include "gplot.h"
 #include "path.h"
@@ -14,13 +13,9 @@ using namespace std;
 
 // create NetworkManager first
 NetworkManager *nm = new NetworkManager();
-map<string, vector<Edge *>> adv;
-//vector<Edge *> bfs_paths;
-//vector<Vertex *> existed_vertices;
 vector<string> vertex_name;
 vector<string> odd_vertex;
 vector<int> degree;
-//queue<Edge *> bfs_search;
 
 void bfs(string src);
 
@@ -221,6 +216,15 @@ if(odd_vertex.size() != 0){
     for(int i=1;i<circuit.size();i++){
        cout<<" -> "<<circuit[i];
     }cout<<endl;
+ 
+    // output txt file
+    ofstream file_output;
+    file_output.open("result3.txt");
+    for(int i=0;i<circuit.size();i++){
+        file_output<<circuit[i]<<" ";
+    }
+
+    file_output.close();
 
     nm->clear();
 
